@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "verify:models": "node scripts/verifyModels.js"
+    "verify:models": "node scripts/verifyModels.js",
+    "seed:states-cities": "node seed/seedStatesCities.js"
   },
   "keywords": [],
   "author": "",

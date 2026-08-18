@@ -7,6 +7,9 @@ import Home from './pages/public/Home'
 import Login from './pages/public/Login'
 import Register from './pages/public/Register'
 import MyAccount from './pages/public/MyAccount'
+import ExploreIndia from './pages/public/ExploreIndia'
+import StateDetails from './pages/public/StateDetails'
+import CityDetails from './pages/public/CityDetails'
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Routes>
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<ExploreIndia />} />
+            <Route path="/states/:stateSlug" element={<StateDetails />} />
+            <Route path="/states/:stateSlug/:citySlug" element={<CityDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route

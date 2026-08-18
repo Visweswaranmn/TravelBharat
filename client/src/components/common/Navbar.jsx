@@ -22,6 +22,10 @@ export default function Navbar() {
         </Link>
 
         <nav className="flex items-center gap-4">
+          <Link to="/explore" className="text-sm font-medium text-slate-600 hover:text-slate-900">
+            Explore
+          </Link>
+
           {loading ? null : isAuthenticated ? (
             <>
               <Link to="/account" className="text-sm text-slate-600 hover:text-slate-900">
