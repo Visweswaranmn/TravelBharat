@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { MapPin, Building2 } from 'lucide-react'
+import { MapPin, Building2, Compass } from 'lucide-react'
 import { getState } from '../../services/stateService'
+import { getDestinations } from '../../services/destinationService'
 import CityCard from '../../components/cards/CityCard'
+import DestinationCard from '../../components/cards/DestinationCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
 import ErrorMessage from '../../components/common/ErrorMessage'
 import EmptyState from '../../components/common/EmptyState'
@@ -11,6 +13,8 @@ export default function StateDetails() {
   const { stateSlug } = useParams()
   const [data, setData] = useState(null)
   const [status, setStatus] = useState('loading')
+  const [destinations, setDestinations] = useState([])
+  const [destinationsStatus, setDestinationsStatus] = useState('loading')
 
   useEffect(() => {
     setStatus('loading')
@@ -20,6 +24,14 @@ export default function StateDetails() {
         setStatus('success')
       })
       .catch(() => setStatus('error'))
+
+    setDestinationsStatus('loading')
+    getDestinations({ state: stateSlug, limit: 50 })
+      .then((res) => {
+        setDestinations(res.data.data.destinations)
+        setDestinationsStatus('success')
+      })
+      .catch(() => setDestinationsStatus('error'))
   }, [stateSlug])
 
   if (status === 'loading') return <LoadingSpinner label="Loading state..." />
@@ -64,7 +76,18 @@ export default function StateDetails() {
         )}
 
         <h2 className="text-xl font-semibold text-slate-900 mt-10 mb-4">Tourist Destinations</h2>
-        <EmptyState title="Coming soon" message="Destination listings for this state are being added in the next module." />
+        {destinationsStatus === 'loading' && <LoadingSpinner label="Loading destinations..." />}
+        {destinationsStatus === 'error' && <ErrorMessage message="Couldn't load destinations for this state." />}
+        {destinationsStatus === 'success' && destinations.length === 0 && (
+          <EmptyState icon={Compass} title="No destinations yet" message="Destinations for this state are coming soon." />
+        )}
+        {destinationsStatus === 'success' && destinations.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {destinations.map((destination) => (
+              <DestinationCard key={destination._id} destination={destination} />
+            ))}
+          </div>
+        )}
 
         <Link to="/explore" className="inline-block mt-10 text-sm font-medium text-orange-600 hover:underline">
           ← Back to Explore India

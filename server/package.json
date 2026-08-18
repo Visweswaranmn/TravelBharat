@@ -8,7 +8,10 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "verify:models": "node scripts/verifyModels.js",
-    "seed:states-cities": "node seed/seedStatesCities.js"
+    "seed:states-cities": "node seed/seedStatesCities.js",
+    "seed:categories": "node seed/seedCategories.js",
+    "seed:destinations": "node seed/seedDestinations.js",
+    "seed:all": "npm run seed:states-cities && npm run seed:categories && npm run seed:destinations"
   },
   "keywords": [],
   "author": "",
