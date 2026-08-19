@@ -19,7 +19,10 @@ import CategoryDetail from './pages/public/CategoryDetail'
 import AdminLogin from './pages/admin/AdminLogin'
 import Dashboard from './pages/admin/Dashboard'
 import Profile from './pages/admin/Profile'
-import ComingSoon from './pages/admin/ComingSoon'
+import ManageStates from './pages/admin/ManageStates'
+import ManageCities from './pages/admin/ManageCities'
+import ManageDestinations from './pages/admin/ManageDestinations'
+import ManageCategories from './pages/admin/ManageCategories'
 
 function App() {
   return (
@@ -59,10 +62,10 @@ function App() {
             }
           >
             <Route index element={<Dashboard />} />
-            <Route path="states" element={<ComingSoon title="Manage States" />} />
-            <Route path="cities" element={<ComingSoon title="Manage Cities" />} />
-            <Route path="destinations" element={<ComingSoon title="Manage Destinations" />} />
-            <Route path="categories" element={<ComingSoon title="Manage Categories" />} />
+            <Route path="states" element={<ManageStates />} />
+            <Route path="cities" element={<ManageCities />} />
+            <Route path="destinations" element={<ManageDestinations />} />
+            <Route path="categories" element={<ManageCategories />} />
             <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>

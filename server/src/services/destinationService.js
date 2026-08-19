@@ -142,4 +142,6 @@ export const deleteDestination = async (id) => {
   }
 
   await destination.deleteOne()
+  // Clean up any dangling references left in other destinations' nearbyAttractions.
+  await Destination.updateMany({ nearbyAttractions: id }, { $pull: { nearbyAttractions: id } })
 }
