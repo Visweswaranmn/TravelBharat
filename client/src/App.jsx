@@ -11,6 +11,9 @@ import ExploreIndia from './pages/public/ExploreIndia'
 import StateDetails from './pages/public/StateDetails'
 import CityDetails from './pages/public/CityDetails'
 import DestinationDetails from './pages/public/DestinationDetails'
+import Search from './pages/public/Search'
+import CategoryList from './pages/public/CategoryList'
+import CategoryDetail from './pages/public/CategoryDetail'
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
             <Route path="/states/:stateSlug" element={<StateDetails />} />
             <Route path="/states/:stateSlug/:citySlug" element={<CityDetails />} />
             <Route path="/destinations/:slug" element={<DestinationDetails />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/categories" element={<CategoryList />} />
+            <Route path="/categories/:categorySlug" element={<CategoryDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route

@@ -25,6 +25,12 @@ export default function Navbar() {
           <Link to="/explore" className="text-sm font-medium text-slate-600 hover:text-slate-900">
             Explore
           </Link>
+          <Link to="/categories" className="text-sm font-medium text-slate-600 hover:text-slate-900">
+            Categories
+          </Link>
+          <Link to="/search" className="text-sm font-medium text-slate-600 hover:text-slate-900">
+            Search
+          </Link>
 
           {loading ? null : isAuthenticated ? (
             <>

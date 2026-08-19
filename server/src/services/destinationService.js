@@ -54,15 +54,41 @@ export const getAllDestinations = async ({ state, city, category, featured, page
   return { destinations, total, page: pageNum, pages: Math.max(Math.ceil(total / limitNum), 1) }
 }
 
+// Matches destination name/description directly (MongoDB text index), and
+// also surfaces destinations whose state, city, or category name matches —
+// so searching "kerala" or "heritage" returns results, not just "munnar".
 export const searchDestinations = async (query) => {
-  if (!query || !query.trim()) {
+  const q = query?.trim()
+  if (!q) {
     return []
   }
 
-  return Destination.find({ $text: { $search: query } }, { score: { $meta: 'textScore' } })
-    .populate(POPULATE_FIELDS)
-    .sort({ score: { $meta: 'textScore' } })
-    .limit(20)
+  const [textMatches, matchingStates, matchingCities, matchingCategories] = await Promise.all([
+    Destination.find({ $text: { $search: q } }, { score: { $meta: 'textScore' } })
+      .populate(POPULATE_FIELDS)
+      .sort({ score: { $meta: 'textScore' } })
+      .limit(30),
+    State.find({ name: { $regex: q, $options: 'i' } }),
+    City.find({ name: { $regex: q, $options: 'i' } }),
+    Category.find({ name: { $regex: q, $options: 'i' } }),
+  ])
+
+  const orConditions = []
+  if (matchingStates.length) orConditions.push({ state: { $in: matchingStates.map((s) => s._id) } })
+  if (matchingCities.length) orConditions.push({ city: { $in: matchingCities.map((c) => c._id) } })
+  if (matchingCategories.length) orConditions.push({ category: { $in: matchingCategories.map((c) => c._id) } })
+
+  const relatedMatches = orConditions.length
+    ? await Destination.find({ $or: orConditions }).populate(POPULATE_FIELDS).limit(30)
+    : []
+
+  // Merge, de-duplicating by id — text matches take priority in ordering.
+  const merged = new Map()
+  for (const destination of [...textMatches, ...relatedMatches]) {
+    merged.set(destination._id.toString(), destination)
+  }
+
+  return Array.from(merged.values())
 }
 
 export const getDestinationBySlug = async (slug) => {
