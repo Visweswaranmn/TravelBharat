@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/common/Navbar'
 
-// Footer arrives in the UI polish phase once there's real content to put in it.
+// TODO: add a real Footer component once there's enough content for one.
 export default function PublicLayout() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">

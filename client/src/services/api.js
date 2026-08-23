@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// Central axios instance. Every service file (authService, stateService, ...)
-// added in later phases will import this instead of creating its own client.
+// Single axios instance shared by every service file (authService,
+// stateService, ...) so baseURL and auth headers only live in one place.
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
   headers: {
@@ -9,7 +9,7 @@ const api = axios.create({
   },
 })
 
-// Attach the JWT (once auth exists) on every outgoing request.
+// Attach the JWT to every outgoing request, if we have one.
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
   if (token) {

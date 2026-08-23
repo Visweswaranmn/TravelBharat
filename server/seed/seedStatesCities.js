@@ -1,7 +1,6 @@
 // Seeds a small, realistic set of states and cities for development and
-// demo purposes. This is NOT the final comprehensive dataset — that's a
-// dedicated later phase covering all states/UTs. This just gives the
-// Explore/State/City pages real content to render and be tested against.
+// demo purposes. Not a full nationwide dataset — just enough real content
+// for the Explore/State/City pages to render and be tested against.
 //
 // Run with: npm run seed:states-cities
 // Safe to re-run — clears existing states and cities first.
@@ -118,9 +117,9 @@ const statesData = [
         name: 'Coorg',
         description:
           'A misty hill district in the Western Ghats known for coffee plantations, waterfalls, and Kodava culture — also called Kodagu.',
-        // No verified Coorg-specific photo yet — reusing the Hampi image as a
-        // placeholder rather than leaving a broken image. Swap this out
-        // during the dedicated seed-data phase.
+        // Couldn't find a solid Coorg-specific photo, so reusing the Hampi
+        // one for now rather than shipping a broken image link. Swap this
+        // out once we have real photography for Coorg.
         image: { url: wikimedia('Virupaksha_Temple,_Hampi.jpg'), alt: 'Virupaksha Temple, Hampi (placeholder — Coorg photo pending)' },
       },
     ],

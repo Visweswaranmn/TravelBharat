@@ -1,16 +1,15 @@
 import { env } from '../config/env.js'
 
-// Catches any route that doesn't match — keeps 404s in the same JSON shape
-// as every other response instead of Express's default HTML page.
+// Keeps 404s in the same JSON shape as everything else instead of
+// Express's default HTML error page.
 export const notFound = (req, res, next) => {
   res.status(404)
   next(new Error(`Route not found — ${req.originalUrl}`))
 }
 
-// Central error handler. Every thrown error (ApiError or otherwise) ends
-// up here — either via next(error), or automatically: Express 5 forwards
-// both sync throws and rejected promises from async middleware/controllers,
-// so route handlers don't need a try/catch or asyncHandler wrapper.
+// Every thrown error ends up here, whether it's an explicit next(error)
+// or just a throw somewhere in an async controller — Express 5 forwards
+// those automatically, so nothing upstream needs its own try/catch.
 export const errorHandler = (err, req, res, next) => {
   let statusCode = err.statusCode || (res.statusCode !== 200 ? res.statusCode : 500)
   let message = err.message || 'Internal server error'

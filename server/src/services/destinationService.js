@@ -54,9 +54,9 @@ export const getAllDestinations = async ({ state, city, category, featured, page
   return { destinations, total, page: pageNum, pages: Math.max(Math.ceil(total / limitNum), 1) }
 }
 
-// Matches destination name/description directly (MongoDB text index), and
-// also surfaces destinations whose state, city, or category name matches —
-// so searching "kerala" or "heritage" returns results, not just "munnar".
+// Text-indexed match on name/description, plus anything whose state, city,
+// or category name matches — so "kerala" or "heritage" turns up results
+// too, not just destinations named literally "Munnar".
 export const searchDestinations = async (query) => {
   const q = query?.trim()
   if (!q) {

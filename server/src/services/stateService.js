@@ -3,9 +3,8 @@ import { City } from '../models/City.js'
 import { Destination } from '../models/Destination.js'
 import { ApiError } from '../utils/ApiError.js'
 
-// Returns states with their city/destination counts attached. Uses two
-// aggregate $group queries (not one per state) so this stays cheap
-// regardless of how many states exist.
+// Two $group aggregates cover city/destination counts for every state at
+// once — avoids running a count query per state as the list grows.
 export const getAllStates = async ({ search, page = 1, limit = 20 }) => {
   const filter = search ? { name: { $regex: search, $options: 'i' } } : {}
   const pageNum = Number(page) || 1

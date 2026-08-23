@@ -1,9 +1,9 @@
 import { validationResult } from 'express-validator'
 import { ApiError } from '../utils/ApiError.js'
 
-// Runs after an array of express-validator checks (e.g. registerValidation)
-// and turns any failures into a single ApiError, so every route gets the
-// same 422 response shape instead of hand-rolling checks per controller.
+// Drops in after an express-validator chain and turns whatever it found
+// into one ApiError, so every route errors out the same way instead of
+// each controller checking validationResult itself.
 export const validate = (req, res, next) => {
   const errors = validationResult(req)
 

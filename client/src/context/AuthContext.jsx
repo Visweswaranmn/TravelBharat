@@ -5,8 +5,8 @@ const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
-  // Starts true — on first load we don't yet know if the stored token
-  // (if any) is still valid, so ProtectedRoute waits for this to settle.
+  // True until we've checked whether a saved token still works —
+  // ProtectedRoute holds off rendering until this settles.
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

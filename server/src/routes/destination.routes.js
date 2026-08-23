@@ -6,9 +6,8 @@ import { createDestinationValidation, updateDestinationValidation } from '../val
 
 const router = Router()
 
-// Specific paths before /:id-style routes would go, if we had one — we
-// don't (the admin table already has full destination objects from the
-// list, so there's no need for a redundant GET /:id).
+// No plain GET /:id here — the admin table already has full destination
+// objects from the list response, so a lookup-by-id route would be dead weight.
 router.get('/search', destinationController.searchDestinations)
 router.get('/slug/:slug', destinationController.getDestinationBySlug)
 router.get('/', destinationController.getDestinations)

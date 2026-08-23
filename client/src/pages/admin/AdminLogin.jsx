@@ -32,9 +32,8 @@ export default function AdminLogin() {
     try {
       const user = await login(form.email, form.password)
 
-      // The backend has one login endpoint for everyone — this UI is the
-      // "separate" admin entry point, but a non-admin account still isn't
-      // allowed to stay signed in through it.
+      // Same login endpoint as the public site — this page is just a
+      // separate entry point, so a non-admin account gets signed right back out.
       if (user.role !== 'admin') {
         logout()
         toast.error('This account does not have admin access.')

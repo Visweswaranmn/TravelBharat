@@ -10,9 +10,9 @@ const navItems = [
   { to: '/admin/profile', label: 'Profile', icon: User },
 ]
 
-// On desktop this sits statically in the flex row (see AdminLayout). On
-// mobile it becomes a fixed off-canvas drawer, toggled by AdminTopbar's
-// hamburger button and closed via the backdrop, the X button, or picking a link.
+// Static in the layout on desktop; on mobile it's an off-canvas drawer
+// opened from AdminTopbar's hamburger and closed by the backdrop, the X,
+// or just picking a link.
 export default function AdminSidebar({ isOpen, onClose }) {
   return (
     <>

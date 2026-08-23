@@ -1,7 +1,7 @@
 import rateLimit from 'express-rate-limit'
 
-// Applied to every /api route — generous enough not to bother a normal
-// user browsing the site, but stops naive scraping/abuse.
+// Loose limit for general API traffic — won't bother a real user, just
+// keeps someone from hammering the API in a loop.
 export const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 300,
@@ -10,8 +10,8 @@ export const generalLimiter = rateLimit({
   message: { success: false, message: 'Too many requests, please try again later.' },
 })
 
-// Tighter limit on register/login specifically — the routes an attacker
-// would actually want to brute-force.
+// Register/login get a much tighter limit — these are the routes worth
+// brute-forcing, everything else isn't as juicy a target.
 export const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,

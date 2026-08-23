@@ -2,8 +2,7 @@ import { Router } from 'express'
 
 const router = Router()
 
-// GET /api/health — used by the client on boot (and by the hosting
-// platform's uptime check) to confirm the API is alive.
+// Client pings this on boot, and it doubles as the uptime check once deployed.
 router.get('/', (req, res) => {
   res.status(200).json({
     success: true,

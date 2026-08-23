@@ -16,10 +16,7 @@ import adminRoutes from './routes/admin.routes.js'
 
 const app = express()
 
-// Security headers. Our API only ever returns JSON, so helmet's defaults
-// (CSP, X-Frame-Options, etc.) are pure upside — nothing here restricts
-// what the frontend (a separate app/origin) can render or fetch.
-app.use(helmet())
+app.use(helmet()) // just headers, no downside since we only ever return JSON
 app.use(cors({ origin: env.clientUrl }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

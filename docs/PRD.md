@@ -34,7 +34,7 @@ Tourism information about Indian destinations is scattered across dozens of stat
 - Admin panel with full CRUD for all content types, protected by role-based access control
 - Responsive design for desktop, tablet, and mobile
 
-### Explicitly out of scope (this phase)
+### Explicitly out of scope (for now)
 - Payment processing or bookings — this is an information platform, not a booking engine
 - User-generated content (reviews, photos, ratings)
 - Real-time data (live weather, crowd levels, pricing)

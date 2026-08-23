@@ -3,9 +3,9 @@ import { User } from '../models/index.js'
 import { ApiError } from '../utils/ApiError.js'
 import { env } from '../config/env.js'
 
-// Verifies the Bearer token and attaches the user to req.user. Express 5
-// forwards thrown errors from async middleware to the error handler on its
-// own, so this doesn't need a try/catch + next(err) wrapper.
+// Verifies the Bearer token and attaches the user to req.user. No
+// try/catch needed — Express 5 forwards thrown errors from async
+// middleware to the error handler on its own.
 export const protect = async (req, res, next) => {
   const authHeader = req.headers.authorization
 

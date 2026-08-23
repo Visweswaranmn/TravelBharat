@@ -16,8 +16,8 @@ const stateSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-// Async pre-save hooks in Mongoose resolve on their own promise — don't
-// declare a `next` param, it confuses Mongoose's callback-vs-async detection.
+// Don't add a `next` param here even though it's tempting — Mongoose sees
+// it and switches to callback mode, which breaks the async version below.
 stateSchema.pre('save', async function () {
   if (this.isModified('name')) {
     this.slug = await generateUniqueSlug(this.constructor, this.name, { excludeId: this._id })

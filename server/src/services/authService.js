@@ -11,9 +11,9 @@ const generateToken = (user) =>
     expiresIn: env.jwtExpiresIn,
   })
 
-// Strips passwordHash and reshapes the doc for API responses. passwordHash
-// is already excluded by the schema's `select: false`, but being explicit
-// here means this stays safe even if a query ever opts back in.
+// select: false already keeps passwordHash out of normal queries, but
+// shaping the response explicitly here means we're not relying on that
+// alone if some future query opts back in with .select('+passwordHash').
 const sanitizeUser = (user) => ({
   id: user._id,
   name: user.name,

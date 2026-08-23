@@ -1,14 +1,13 @@
-// Seeds 2 destinations per city from the Phase 4 seed data — enough to
-// exercise the full Destinations feature (filtering, search, detail pages,
-// nearby attractions) without being the final comprehensive dataset.
+// Seeds 2 destinations per city on top of the states/cities seed data —
+// enough to exercise filtering, search, detail pages, and nearby
+// attractions without being a full nationwide dataset.
 //
 // Depends on states/cities (seed:states-cities) and categories
 // (seed:categories) already existing. Run with: npm run seed:destinations
 //
 // Images are reused from the parent city/state photo rather than sourcing
-// a brand new one per destination — a deliberate shortcut for this seed
-// pass; unique photography per destination belongs to the dedicated
-// seed-data phase later.
+// a new one per destination — fine for demo data, but real photography
+// per destination is a TODO before this goes anywhere near production.
 
 import mongoose from 'mongoose'
 import { connectDB } from '../src/config/db.js'

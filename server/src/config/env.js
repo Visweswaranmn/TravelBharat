@@ -2,9 +2,8 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-// Single place that reads process.env so the rest of the app never touches
-// it directly. Fail fast if something required is missing instead of
-// limping along with `undefined` and failing mysteriously later.
+// Warn early if something critical is missing, instead of failing weirdly
+// three files deep the first time we actually try to use it.
 const required = ['MONGO_URI', 'JWT_SECRET']
 
 for (const key of required) {

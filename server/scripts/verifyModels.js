@@ -1,7 +1,7 @@
-// Manual sanity check for the Phase 2 schemas — not a permanent test suite,
-// just a quick way to prove the models, refs, and slug logic behave before
-// we build real APIs on top of them. Creates a handful of documents against
-// the real database, prints what happened, then deletes everything it made.
+// Manual sanity check for the Mongoose models — not a real test suite,
+// just a quick way to confirm the schemas, refs, and slug logic behave
+// before building APIs on top of them. Creates a handful of documents
+// against the real database, prints what happened, then cleans up.
 //
 // Run with: npm run verify:models
 

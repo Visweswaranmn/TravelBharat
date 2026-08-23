@@ -11,9 +11,8 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email address'],
     },
-    // Never store or return the plain password. select: false keeps it out
-    // of normal queries — controllers must explicitly .select('+passwordHash')
-    // when they need to compare it (login).
+    // select: false so this never comes back on a normal query — login has
+    // to ask for it explicitly with .select('+passwordHash').
     passwordHash: { type: String, required: true, select: false },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
   },
