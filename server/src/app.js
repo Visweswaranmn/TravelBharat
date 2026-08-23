@@ -1,8 +1,11 @@
 import express from 'express'
 import cors from 'cors'
+import helmet from 'helmet'
 import morgan from 'morgan'
 import { env } from './config/env.js'
 import { notFound, errorHandler } from './middleware/errorHandler.js'
+import { sanitizeInput } from './middleware/sanitizeInput.js'
+import { generalLimiter } from './middleware/rateLimiters.js'
 import healthRoutes from './routes/health.routes.js'
 import authRoutes from './routes/auth.routes.js'
 import stateRoutes from './routes/state.routes.js'
@@ -13,9 +16,15 @@ import adminRoutes from './routes/admin.routes.js'
 
 const app = express()
 
+// Security headers. Our API only ever returns JSON, so helmet's defaults
+// (CSP, X-Frame-Options, etc.) are pure upside — nothing here restricts
+// what the frontend (a separate app/origin) can render or fetch.
+app.use(helmet())
 app.use(cors({ origin: env.clientUrl }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(sanitizeInput)
+app.use('/api', generalLimiter)
 
 if (env.nodeEnv === 'development') {
   app.use(morgan('dev'))

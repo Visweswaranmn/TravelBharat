@@ -17,7 +17,7 @@ export default function Register() {
     if (!form.email.trim()) nextErrors.email = 'Email is required'
     else if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = 'Enter a valid email address'
     if (!form.password) nextErrors.password = 'Password is required'
-    else if (form.password.length < 6) nextErrors.password = 'Password must be at least 6 characters'
+    else if (form.password.length < 8) nextErrors.password = 'Password must be at least 8 characters'
     if (form.confirmPassword !== form.password) nextErrors.confirmPassword = 'Passwords do not match'
 
     setErrors(nextErrors)
