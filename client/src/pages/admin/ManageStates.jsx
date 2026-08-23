@@ -188,7 +188,7 @@ export default function ManageStates() {
             <FormField label="Name" error={errors.name}>
               <input type="text" value={form.name} onChange={handleChange('name')} className={inputClass} />
             </FormField>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField label="Code" error={errors.code}>
                 <input type="text" value={form.code} onChange={handleChange('code')} placeholder="TN" className={inputClass} />
               </FormField>

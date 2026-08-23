@@ -295,7 +295,7 @@ export default function ManageDestinations() {
                 <input type="text" value={form.name} onChange={handleChange('name')} className={inputClass} />
               </FormField>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <FormField label="State" error={errors.state}>
                   <select value={form.state} onChange={handleChange('state')} className={inputClass}>
                     {states.map((state) => (
@@ -336,7 +336,7 @@ export default function ManageDestinations() {
               </FormField>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField label="Best Time to Visit">
                 <input type="text" value={form.bestTimeToVisit} onChange={handleChange('bestTimeToVisit')} placeholder="October to March" className={inputClass} />
               </FormField>
