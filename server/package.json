@@ -13,8 +13,8 @@
     "seed:destinations": "node seed/seedDestinations.js",
     "seed:all": "npm run seed:states-cities && npm run seed:categories && npm run seed:destinations"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["tourism", "india", "travel", "express", "mongodb"],
+  "author": "Visweswaran M N",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
