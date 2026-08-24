@@ -1,6 +1,6 @@
 export default function ConfirmDialog({ title, message, confirmLabel = 'Delete', onConfirm, onCancel, loading }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50" onClick={onCancel}>
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/50" onClick={onCancel}>
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
         <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
         <p className="text-sm text-slate-500 mt-2">{message}</p>

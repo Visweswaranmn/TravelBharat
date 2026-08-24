@@ -2,7 +2,7 @@ import { X } from 'lucide-react'
 
 export default function Modal({ title, onClose, children, maxWidth = 'max-w-lg' }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50" onClick={onClose}>
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/50" onClick={onClose}>
       <div
         className={`bg-white rounded-2xl shadow-xl w-full ${maxWidth} max-h-[90vh] overflow-y-auto`}
         onClick={(e) => e.stopPropagation()}
