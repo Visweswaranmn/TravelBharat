@@ -5,6 +5,7 @@ import { getDestinations, createDestination, updateDestination, deleteDestinatio
 import { getStates } from '../../services/stateService'
 import { getCities } from '../../services/cityService'
 import { getCategories } from '../../services/categoryService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import Modal from '../../components/admin/Modal'
 import ConfirmDialog from '../../components/admin/ConfirmDialog'
 import FormField from '../../components/admin/FormField'
@@ -75,6 +76,8 @@ const toPayload = (form) => {
 }
 
 export default function ManageDestinations() {
+  usePageTitle('Manage Destinations')
+
   const [destinations, setDestinations] = useState([])
   const [states, setStates] = useState([])
   const [cities, setCities] = useState([])

@@ -1,7 +1,10 @@
 import { useAuth } from '../../context/AuthContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function MyAccount() {
   const { user } = useAuth()
+
+  usePageTitle('My Account')
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-16">

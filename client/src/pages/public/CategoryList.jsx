@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getCategories } from '../../services/categoryService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import CategoryCard from '../../components/cards/CategoryCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
 import ErrorMessage from '../../components/common/ErrorMessage'
@@ -7,6 +8,8 @@ import ErrorMessage from '../../components/common/ErrorMessage'
 export default function CategoryList() {
   const [categories, setCategories] = useState([])
   const [status, setStatus] = useState('loading')
+
+  usePageTitle('Browse by Category', 'Heritage, nature, adventure and more — find Indian destinations by what interests you.')
 
   useEffect(() => {
     getCategories()

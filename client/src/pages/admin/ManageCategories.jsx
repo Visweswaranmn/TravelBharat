@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../../services/categoryService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import Modal from '../../components/admin/Modal'
 import ConfirmDialog from '../../components/admin/ConfirmDialog'
 import FormField from '../../components/admin/FormField'
@@ -12,6 +13,8 @@ import ErrorMessage from '../../components/common/ErrorMessage'
 const emptyForm = { name: '', description: '' }
 
 export default function ManageCategories() {
+  usePageTitle('Manage Categories')
+
   const [categories, setCategories] = useState([])
   const [status, setStatus] = useState('loading')
 

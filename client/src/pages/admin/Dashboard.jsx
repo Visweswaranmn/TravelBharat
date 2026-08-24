@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Map, Building2, Compass, Tag } from 'lucide-react'
 import { getDashboardStats } from '../../services/adminService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
 import ErrorMessage from '../../components/common/ErrorMessage'
 
@@ -22,6 +23,8 @@ function StatCard({ icon: Icon, label, value }) {
 export default function Dashboard() {
   const [stats, setStats] = useState(null)
   const [status, setStatus] = useState('loading')
+
+  usePageTitle('Admin Dashboard')
 
   useEffect(() => {
     getDashboardStats()

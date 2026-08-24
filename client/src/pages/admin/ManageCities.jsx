@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { getCities, createCity, updateCity, deleteCity } from '../../services/cityService'
 import { getStates } from '../../services/stateService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import Modal from '../../components/admin/Modal'
 import ConfirmDialog from '../../components/admin/ConfirmDialog'
 import FormField from '../../components/admin/FormField'
@@ -28,6 +29,8 @@ const toPayload = (form) => ({
 })
 
 export default function ManageCities() {
+  usePageTitle('Manage Cities')
+
   const [cities, setCities] = useState([])
   const [states, setStates] = useState([])
   const [status, setStatus] = useState('loading')

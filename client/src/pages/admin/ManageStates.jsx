@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { getStates, createState, updateState, deleteState } from '../../services/stateService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import Modal from '../../components/admin/Modal'
 import ConfirmDialog from '../../components/admin/ConfirmDialog'
 import FormField from '../../components/admin/FormField'
@@ -29,6 +30,8 @@ const toPayload = (form) => ({
 })
 
 export default function ManageStates() {
+  usePageTitle('Manage States')
+
   const [states, setStates] = useState([])
   const [status, setStatus] = useState('loading')
 

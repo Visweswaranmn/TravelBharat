@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Compass } from 'lucide-react'
 import { getStates } from '../../services/stateService'
 import { useDebounce } from '../../hooks/useDebounce'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import StateCard from '../../components/cards/StateCard'
 import SearchBar from '../../components/search/SearchBar'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
@@ -13,6 +14,8 @@ export default function ExploreIndia() {
   const debouncedSearch = useDebounce(search, 400)
   const [states, setStates] = useState([])
   const [status, setStatus] = useState('loading') // loading | success | error
+
+  usePageTitle('Explore India', 'Browse Indian states and union territories to discover their cities and destinations.')
 
   useEffect(() => {
     setStatus('loading')

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { MapPin, Building2, Compass } from 'lucide-react'
 import { getState } from '../../services/stateService'
 import { getDestinations } from '../../services/destinationService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import CityCard from '../../components/cards/CityCard'
 import DestinationCard from '../../components/cards/DestinationCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
@@ -33,6 +34,8 @@ export default function StateDetails() {
       })
       .catch(() => setDestinationsStatus('error'))
   }, [stateSlug])
+
+  usePageTitle(data?.state?.name, data?.state?.description)
 
   if (status === 'loading') return <LoadingSpinner label="Loading state..." />
   if (status === 'error') return <ErrorMessage message="Couldn't load this state. It may not exist." />

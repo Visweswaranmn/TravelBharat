@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { MapPin, Clock, Ticket, CalendarDays, ExternalLink, Compass } from 'lucide-react'
 import { getDestinationBySlug } from '../../services/destinationService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import ImageGallery from '../../components/gallery/ImageGallery'
 import DestinationCard from '../../components/cards/DestinationCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
@@ -34,6 +35,11 @@ export default function DestinationDetails() {
       })
       .catch(() => setStatus('error'))
   }, [slug])
+
+  usePageTitle(
+    destination ? `${destination.name} — ${destination.city?.name}, ${destination.state?.name}` : null,
+    destination?.shortDescription
+  )
 
   if (status === 'loading') return <LoadingSpinner label="Loading destination..." />
   if (status === 'error') return <ErrorMessage message="Couldn't load this destination. It may not exist." />

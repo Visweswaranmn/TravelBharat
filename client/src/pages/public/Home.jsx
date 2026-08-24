@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Compass } from 'lucide-react'
 import { getCategories } from '../../services/categoryService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import SearchBar from '../../components/search/SearchBar'
 import CategoryCard from '../../components/cards/CategoryCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
@@ -11,6 +12,8 @@ export default function Home() {
   const [query, setQuery] = useState('')
   const [categories, setCategories] = useState([])
   const [categoriesStatus, setCategoriesStatus] = useState('loading')
+
+  usePageTitle(null, "Explore India's states, cities, culture, heritage and unforgettable destinations — all in one place.")
 
   useEffect(() => {
     getCategories()

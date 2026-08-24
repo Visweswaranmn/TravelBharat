@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Compass } from 'lucide-react'
 import { getCity } from '../../services/cityService'
 import { getDestinations } from '../../services/destinationService'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import DestinationCard from '../../components/cards/DestinationCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
 import ErrorMessage from '../../components/common/ErrorMessage'
@@ -32,6 +33,11 @@ export default function CityDetails() {
       })
       .catch(() => setDestinationsStatus('error'))
   }, [stateSlug, citySlug])
+
+  usePageTitle(
+    data?.city ? `${data.city.name}, ${data.city.state?.name}` : null,
+    data?.city?.description
+  )
 
   if (status === 'loading') return <LoadingSpinner label="Loading city..." />
   if (status === 'error') return <ErrorMessage message="Couldn't load this city. It may not exist." />

@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../context/AuthContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
+
+  usePageTitle('Log In')
 
   const [form, setForm] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})

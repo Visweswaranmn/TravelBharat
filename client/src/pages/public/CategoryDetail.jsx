@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getCategory } from '../../services/categoryService'
 import { getDestinations } from '../../services/destinationService'
 import { getCategoryIcon } from '../../utils/categoryIcons'
+import { usePageTitle } from '../../hooks/usePageTitle'
 import DestinationCard from '../../components/cards/DestinationCard'
 import LoadingSpinner from '../../components/common/LoadingSpinner'
 import ErrorMessage from '../../components/common/ErrorMessage'
@@ -32,6 +33,8 @@ export default function CategoryDetail() {
       })
       .catch(() => setDestinationsStatus('error'))
   }, [categorySlug])
+
+  usePageTitle(category?.name, category?.description)
 
   if (status === 'loading') return <LoadingSpinner label="Loading category..." />
   if (status === 'error') return <ErrorMessage message="Couldn't load this category. It may not exist." />

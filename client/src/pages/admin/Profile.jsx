@@ -1,7 +1,10 @@
 import { useAuth } from '../../context/AuthContext'
+import { usePageTitle } from '../../hooks/usePageTitle'
 
 export default function Profile() {
   const { user } = useAuth()
+
+  usePageTitle('Admin Profile')
 
   return (
     <div>
